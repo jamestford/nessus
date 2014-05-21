@@ -1,0 +1,5244 @@
+#
+# (C) 2014 Tenable Network Security, Inc.
+#
+# This script is released under the Tenable Subscription License and
+# may not be used from within scripts released under another license
+# without authorization from Tenable Network Security, Inc.
+#
+# See the following licenses for details:
+#
+# http://static.tenable.com/prod_docs/Nessus_5_SLA_and_Subscription_Agreement.pdf
+# http://static.tenable.com/prod_docs/Subscription_Agreement.pdf
+#
+# @PROFESSIONALFEED@
+# $Revision: 1.10 $
+# $Date: 2014/01/16 18:28:23 $
+# Description :
+# 
+# This file was created from .inf file U_FSOW2k3MS_Analyze_only_V6R1.30.inf, included with 
+# DISA STIGs Windows Server 2003 Security checklists Version 6, Release 1.30. The inf 
+# files and other related documentation can be downloaded from the following 
+# links :
+#  
+# http://iase.disa.mil/stigs/checklist/
+# http://iase.disa.mil/stigs/os/windows/u_windows_2003_v6r1.30_stig.zip
+#
+
+<check_type: "Windows" version:"2">
+
+<group_policy: "Tenable Audit file created with i2a v2 tool">
+
+
+#--------------------------------------#
+#  [Unicode] settings
+#--------------------------------------#
+
+#Unicode=yes
+
+#--------------------------------------#
+#  [System Access] settings
+#--------------------------------------#
+
+
+<item>
+	name: "Minimum password age"
+	value: "[1..60]"
+</item>
+
+<item>
+	name: "Maximum password age"
+	value: "[MIN..60]"
+</item>
+
+<item>
+	name: "Minimum password length"
+	value: "[14..MAX]"
+</item>
+
+<item>
+	name: "Password must meet complexity requirements"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Enforce password history"
+	value: "[24..MAX]"
+</item>
+
+<item>
+	name: "Account lockout threshold"
+	value: "[MIN..3]"
+</item>
+
+<item>
+	name: "Reset lockout account counter after"
+	value: "[60..MAX]"
+</item>
+
+<item>
+	name: "Account lockout duration"
+	value: "0"
+</item>
+
+<item>
+	name: "Network security: Force logoff when logon hours expire"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Store password using reversible encryption for all users in the domain"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Network access: Allow anonymous SID/Name translation"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Accounts: Guest account status"
+	value: "disabled"
+</item>
+
+#--------------------------------------#
+#  [System Log] settings
+#--------------------------------------#
+
+
+<item>
+	name: "Maximum system log size"
+	value: "[MIN..16384]"
+</item>
+
+<item>
+	name: "Retention method for system log"
+	value: "Manually"
+</item>
+
+<item>
+	name: "Prevent local guests group from accessing system log"
+	value: "enabled"
+</item>
+
+#--------------------------------------#
+#  [Security Log] settings
+#--------------------------------------#
+
+
+<item>
+	name: "Maximum security log size"
+	value: "[MIN..81920]"
+</item>
+
+<item>
+	name: "Retention method for security log"
+	value: "Manually"
+</item>
+
+<item>
+	name: "Prevent local guests group from accessing security log"
+	value: "enabled"
+</item>
+
+#--------------------------------------#
+#  [Application Log] settings
+#--------------------------------------#
+
+
+<item>
+	name: "Maximum application log size"
+	value: "[MIN..16384]"
+</item>
+
+<item>
+	name: "Retention method for application log"
+	value: "Manually"
+</item>
+
+<item>
+	name: "Prevent local guests group from accessing application log"
+	value: "enabled"
+</item>
+
+#--------------------------------------#
+#  [Event Audit] settings
+#--------------------------------------#
+
+
+<item>
+	name: "Audit system events"
+	value: "Success"
+</item>
+
+<item>
+	name: "Audit logon events"
+	value: "Success, Failure"
+</item>
+
+<item>
+	name: "Audit object access"
+	value: "Failure"
+</item>
+
+<item>
+	name: "Audit privilege use"
+	value: "Failure"
+</item>
+
+<item>
+	name: "Audit policy change"
+	value: "Success"
+</item>
+
+<item>
+	name: "Audit account management"
+	value: "Success, Failure"
+</item>
+
+<item>
+	name: "Audit account logon events"
+	value: "Success, Failure"
+</item>
+
+#--------------------------------------#
+#  [Registry Keys] settings
+#--------------------------------------#
+
+
+<registry_acl: "1">
+
+<user: "Everyone">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_deny: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: REGISTRY_AUDIT
+      description: "HKLM\SYSTEM REGISTRY_AUDIT"
+      value_type: REG_ACL
+      value_data: "1"
+      reg_key: "HKLM\SYSTEM"
+      acl_option: CAN_BE_NULL
+</item>
+
+<registry_acl: "3">
+
+<user: "Everyone">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_deny: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: REGISTRY_AUDIT
+      description: "HKLM\SOFTWARE REGISTRY_AUDIT"
+      value_type: REG_ACL
+      value_data: "3"
+      reg_key: "HKLM\SOFTWARE"
+      acl_option: CAN_BE_NULL
+</item>
+
+<registry_acl: "5">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "Backup Operators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "read" 
+	</user>
+
+<user: "LOCAL SERVICE">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "read" 
+	</user>
+
+</acl>
+
+<custom_item>
+	type: REGISTRY_PERMISSIONS
+	description: "HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg REGISTRY_PERMISSIONS audit"
+	value_type: REG_ACL
+	value_data: "5"
+	reg_key: "HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg"
+       acl_option: CAN_BE_NULL
+</item>
+
+#--------------------------------------#
+#  [File Security] settings
+#--------------------------------------#
+
+<file_acl: "6">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\regedit.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "6"
+      file: "%SystemRoot%\regedit.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "7">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\tlntsvr.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "7"
+      file: "%SystemRoot%\system32\tlntsvr.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "8">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\telnet.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "8"
+      file: "%SystemRoot%\system32\telnet.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "9">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\subst.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "9"
+      file: "%SystemRoot%\system32\subst.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "10">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\sc.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "10"
+      file: "%SystemRoot%\system32\sc.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "11">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\regsvr32.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "11"
+      file: "%SystemRoot%\system32\regsvr32.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "12">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\net1.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "12"
+      file: "%SystemRoot%\system32\net1.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "13">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\net.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "13"
+      file: "%SystemRoot%\system32\net.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "14">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\ftp.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "14"
+      file: "%SystemRoot%\system32\ftp.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "15">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\eventtriggers.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "15"
+      file: "%SystemRoot%\system32\eventtriggers.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "16">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\eventcreate.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "16"
+      file: "%SystemRoot%\system32\eventcreate.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "17">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\edlin.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "17"
+      file: "%SystemRoot%\system32\edlin.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "18">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\debug.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "18"
+      file: "%SystemRoot%\system32\debug.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "19">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\attrib.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "19"
+      file: "%SystemRoot%\system32\attrib.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "20">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\cacls.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "20"
+      file: "%SystemRoot%\system32\cacls.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "21">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\at.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "21"
+      file: "%SystemRoot%\system32\at.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "22">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\arp.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "22"
+      file: "%SystemRoot%\system32\arp.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "23">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\nbtstat.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "23"
+      file: "%SystemRoot%\system32\nbtstat.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "24">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\netsh.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "24"
+      file: "%SystemRoot%\system32\netsh.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "25">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\netstat.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "25"
+      file: "%SystemRoot%\system32\netstat.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "26">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\nslookup.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "26"
+      file: "%SystemRoot%\system32\nslookup.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "27">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\ntbackup.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "27"
+      file: "%SystemRoot%\system32\ntbackup.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "28">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\rcp.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "28"
+      file: "%SystemRoot%\system32\rcp.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "29">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\reg.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "29"
+      file: "%SystemRoot%\system32\reg.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "30">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\regedt32.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "30"
+      file: "%SystemRoot%\system32\regedt32.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "31">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\regini.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "31"
+      file: "%SystemRoot%\system32\regini.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "32">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\rexec.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "32"
+      file: "%SystemRoot%\system32\rexec.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "33">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\route.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "33"
+      file: "%SystemRoot%\system32\route.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "34">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\rsh.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "34"
+      file: "%SystemRoot%\system32\rsh.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "35">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\secedit.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "35"
+      file: "%SystemRoot%\system32\secedit.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "36">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\systeminfo.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "36"
+      file: "%SystemRoot%\system32\systeminfo.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+<file_acl: "37">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "full control" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: FILE_PERMISSIONS
+      description: "%SystemRoot%\system32\tftp.exe FILE_PERMISSIONS audit"
+      value_type: FILE_ACL
+      value_data: "37"
+      file: "%SystemRoot%\system32\tftp.exe"
+      acl_option: CAN_BE_NULL
+</item>
+
+
+#--------------------------------------#
+#  [Service General Setting] settings
+#--------------------------------------#
+
+<service_acl: "38">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "this object and child objects"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service ClipSrv SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "38"
+      service: "ClipSrv"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service ClipSrv start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "ClipSrv"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "39">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service RemoteAccess SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "39"
+      service: "RemoteAccess"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service RemoteAccess start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "RemoteAccess"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "40">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service TlntSvr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "40"
+      service: "TlntSvr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service TlntSvr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "TlntSvr"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "41">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service SharedAccess SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "41"
+      service: "SharedAccess"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service SharedAccess start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "SharedAccess"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "42">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Alerter SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "42"
+      service: "Alerter"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Alerter start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Alerter"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "43">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Fax SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "43"
+      service: "Fax"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Fax start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Fax"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "44">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service MSFTPSVC SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "44"
+      service: "MSFTPSVC"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service MSFTPSVC start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "MSFTPSVC"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "45">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service IISADMIN SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "45"
+      service: "IISADMIN"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service IISADMIN start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "IISADMIN"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "46">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service mnmsrvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "46"
+      service: "mnmsrvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service mnmsrvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "mnmsrvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "47">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service SMTPSVC SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "47"
+      service: "SMTPSVC"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service SMTPSVC start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "SMTPSVC"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "48">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service SNMP SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "48"
+      service: "SNMP"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service SNMP start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "SNMP"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "49">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service W3SVC SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "49"
+      service: "W3SVC"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service W3SVC start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "W3SVC"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "50">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Schedule SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "50"
+      service: "Schedule"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Schedule start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Schedule"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "51">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service ALG SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "51"
+      service: "ALG"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service ALG start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "ALG"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "52">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service AppMgmt SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "52"
+      service: "AppMgmt"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service AppMgmt start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "AppMgmt"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "53">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service aspnet_state SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "53"
+      service: "aspnet_state"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service aspnet_state start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "aspnet_state"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "54">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service CertSvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "54"
+      service: "CertSvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service CertSvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "CertSvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "55">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service COMSysApp SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "55"
+      service: "COMSysApp"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service COMSysApp start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "COMSysApp"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "56">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service DHCPServer SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "56"
+      service: "DHCPServer"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service DHCPServer start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "DHCPServer"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "57">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service TrkWks SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "57"
+      service: "TrkWks"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service TrkWks start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "TrkWks"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "58">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service TrkSvr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "58"
+      service: "TrkSvr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service TrkSvr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "TrkSvr"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "59">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service MSDTC SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "59"
+      service: "MSDTC"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service MSDTC start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "MSDTC"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "60">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service ERSvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "60"
+      service: "ERSvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service ERSvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "ERSvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "61">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service helpsvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "61"
+      service: "helpsvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service helpsvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "helpsvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "62">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service HTTPFilter SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "62"
+      service: "HTTPFilter"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service HTTPFilter start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "HTTPFilter"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "63">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service HidServ SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "63"
+      service: "HidServ"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service HidServ start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "HidServ"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "64">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service ImapiService SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "64"
+      service: "ImapiService"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service ImapiService start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "ImapiService"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "65">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service CiSvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "65"
+      service: "CiSvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service CiSvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "CiSvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "66">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service LicenseService SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "66"
+      service: "LicenseService"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service LicenseService start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "LicenseService"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "67">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Messenger SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "67"
+      service: "Messenger"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Messenger start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Messenger"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "68">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service NetDDE SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "68"
+      service: "NetDDE"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service NetDDE start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "NetDDE"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "69">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service NetDDEdsdm SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "69"
+      service: "NetDDEdsdm"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service NetDDEdsdm start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "NetDDEdsdm"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "70">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service NntpSvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "70"
+      service: "NntpSvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service NntpSvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "NntpSvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "71">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service WmdmPmSN SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "71"
+      service: "WmdmPmSN"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service WmdmPmSN start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "WmdmPmSN"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "72">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Spooler SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "72"
+      service: "Spooler"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Spooler start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Spooler"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "73">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service RasAuto SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "73"
+      service: "RasAuto"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service RasAuto start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "RasAuto"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "74">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service RasMan SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "74"
+      service: "RasMan"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service RasMan start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "RasMan"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "75">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service RDSessMgr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "75"
+      service: "RDSessMgr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service RDSessMgr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "RDSessMgr"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "76">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service RSoPProv SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "76"
+      service: "RSoPProv"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service RSoPProv start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "RSoPProv"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "77">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service seclogon SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "77"
+      service: "seclogon"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service seclogon start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "seclogon"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "78">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service ShellHWDetection SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "78"
+      service: "ShellHWDetection"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service ShellHWDetection start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "ShellHWDetection"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "79">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service sacsvr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "79"
+      service: "sacsvr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service sacsvr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "sacsvr"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "80">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service TapiSrv SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "80"
+      service: "TapiSrv"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service TapiSrv start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "TapiSrv"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "81">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Tssdis SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "81"
+      service: "Tssdis"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Tssdis start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Tssdis"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "82">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Themes SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "82"
+      service: "Themes"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Themes start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Themes"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "83">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service UPS SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "83"
+      service: "UPS"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service UPS start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "UPS"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "84">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service uploadmgr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "84"
+      service: "uploadmgr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service uploadmgr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "uploadmgr"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "85">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service vds SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "85"
+      service: "vds"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service vds start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "vds"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "86">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service WebClient SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "86"
+      service: "WebClient"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service WebClient start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "WebClient"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "87">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service AudioSrv SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "87"
+      service: "AudioSrv"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service AudioSrv start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "AudioSrv"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "88">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service stisvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "88"
+      service: "stisvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service stisvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "stisvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "89">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service WINS SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "89"
+      service: "WINS"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service WINS start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "WINS"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "90">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service WinHttpAutoProxySvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "90"
+      service: "WinHttpAutoProxySvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service WinHttpAutoProxySvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "WinHttpAutoProxySvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "91">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service WZCSVC SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "91"
+      service: "WZCSVC"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service WZCSVC start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "WZCSVC"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "92">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service SNMPTRAP SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "92"
+      service: "SNMPTRAP"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service SNMPTRAP start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "SNMPTRAP"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "93">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service TermService SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "93"
+      service: "TermService"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service TermService start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "TermService"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "94">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service nwcworkstation SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "94"
+      service: "nwcworkstation"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service nwcworkstation start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "nwcworkstation"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "95">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service clussvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "95"
+      service: "clussvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service clussvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "clussvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "96">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service MacFile SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "96"
+      service: "MacFile"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service MacFile start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "MacFile"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "97">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service iasjet SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "97"
+      service: "iasjet"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service iasjet start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "iasjet"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "98">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service irmon SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "98"
+      service: "irmon"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service irmon start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "irmon"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "99">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service ias SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "99"
+      service: "ias"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service ias start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "ias"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "100">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service 6to4 SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "100"
+      service: "6to4"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service 6to4 start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "6to4"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "101">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service msmq SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "101"
+      service: "msmq"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service msmq start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "msmq"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "102">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service mqds SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "102"
+      service: "mqds"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service mqds start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "mqds"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "103">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service msmqtriggers SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "103"
+      service: "msmqtriggers"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service msmqtriggers start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "msmqtriggers"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "104">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service pop3svc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "104"
+      service: "pop3svc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service pop3svc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "pop3svc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "105">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service macprint SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "105"
+      service: "macprint"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service macprint start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "macprint"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "106">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service binlsvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "106"
+      service: "binlsvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service binlsvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "binlsvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "107">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service appmgr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "107"
+      service: "appmgr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service appmgr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "appmgr"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "108">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Remote_Storage_User_Link SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "108"
+      service: "Remote_Storage_User_Link"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Remote_Storage_User_Link start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Remote_Storage_User_Link"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "109">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Remote_Storage_Server SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "109"
+      service: "Remote_Storage_Server"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Remote_Storage_Server start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Remote_Storage_Server"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "110">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service nwsapagent SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "110"
+      service: "nwsapagent"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service nwsapagent start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "nwsapagent"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "111">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service simptcp SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "111"
+      service: "simptcp"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service simptcp start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "simptcp"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "112">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service groveler SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "112"
+      service: "groveler"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service groveler start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "groveler"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "113">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service lpdsvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "113"
+      service: "lpdsvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service lpdsvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "lpdsvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "114">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service termservlicensing SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "114"
+      service: "termservlicensing"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service termservlicensing start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "termservlicensing"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "115">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service tftpd SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "115"
+      service: "tftpd"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service tftpd start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "tftpd"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "116">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service wmserver SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "116"
+      service: "wmserver"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service wmserver start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "wmserver"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "117">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service winsysresmgr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "117"
+      service: "winsysresmgr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service winsysresmgr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "winsysresmgr"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "118">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service UDDI SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "118"
+      service: "UDDI"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service UDDI start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "UDDI"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "119">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service MSSQLServerADHelper SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "119"
+      service: "MSSQLServerADHelper"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service MSSQLServerADHelper start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "MSSQLServerADHelper"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "120">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service CORRTSvc SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "120"
+      service: "CORRTSvc"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service CORRTSvc start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "CORRTSvc"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "121">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service Appmon SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "121"
+      service: "Appmon"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service Appmon start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "Appmon"
+      svc_option: CAN_BE_NULL
+</item>
+
+<service_acl: "122">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+<user: "Interactive">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "query status" | "enumerate dependents" | "interrogate" | "user-defined control" | "read permissions" 
+	</user>
+
+<user: "SYSTEM">
+	acl_inheritance: "not inherited"
+	acl_apply: "This object only"
+ 	acl_allow: "query template" | "change template" | "query status" | "enumerate dependents" | "start" | "stop" | "pause and continue" | "interrogate" | "user-defined control" | "delete" | "read permissions" | "change permissions" | "take ownership" 
+	</user>
+
+</acl>
+
+<custom_item>
+      type: SERVICE_PERMISSIONS
+      description: "Service elementmgr SERVICE_PERMISSIONS"
+      value_type: SERVICE_ACL
+      value_data: "122"
+      service: "elementmgr"
+      acl_option: CAN_BE_NULL
+</item>
+
+<custom_item>
+      type: SERVICE_POLICY
+      description: "Service elementmgr start type"
+      value_type: SERVICE_SET
+      value_data: "Disabled"
+      service_name: "elementmgr"
+      svc_option: CAN_BE_NULL
+</item>
+
+
+#--------------------------------------#
+#  [Version] settings
+#--------------------------------------#
+
+#signature="$CHICAGO$"
+#Revision=1
+
+#--------------------------------------#
+#  [Group Membership] settings
+#--------------------------------------#
+
+
+<custom_item>
+   type: GROUP_MEMBERS_POLICY
+   description: "Checks Power Users members"
+   value_type: POLICY_TEXT
+   value_data: ""
+   group_name: "Power Users"
+</item>
+
+#--------------------------------------#
+#  [Privilege Rights] settings
+#--------------------------------------#
+
+
+<item> 
+	name: "Replace a process level token"
+	value: "NETWORK SERVICE"&&"LOCAL SERVICE" 
+</item>
+
+<item> 
+	name: "Generate security audits"
+	value: "NETWORK SERVICE"&&"LOCAL SERVICE" 
+</item>
+
+<item> 
+	name: "Back up files and directories"
+	value: "Backup Operators"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Bypass traverse checking"
+	value: "Authenticated Users" 
+</item>
+
+<item> 
+	name: "Create a pagefile"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Create permanent shared objects" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Create a token object" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Debug programs" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Deny log on locally"
+	value: "Support_388945a0"&&"Guests" 
+</item>
+
+<item> 
+	name: "Deny access to this computer from the network"
+	value: "Support_388945a0"&&"Guests"&&"ANONYMOUS LOGON" 
+</item>
+
+<item> 
+	name: "Enable computer and user accounts to be trusted for delegation" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Increase scheduling priority"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Adjust memory quotas for a process"
+	value: "NETWORK SERVICE"&&"LOCAL SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Load and unload device drivers"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Profile single process"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Force shutdown from a remote system"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Restore files and directories"
+	value: "Backup Operators"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Shut down the system"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Modify firmware environment values"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Profile system performance"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Change the system time"
+	value: "LOCAL SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Take ownership of files or other objects"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Remove computer from docking station"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Deny log on as a batch job"
+	value: "Support_388945a0"&&"Guests" 
+</item>
+
+<item> 
+	name: "Deny log on as a service" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Lock Pages in Memory" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Deny log on through Terminal Services"
+	value: "Everyone" 
+</item>
+
+<item> 
+	name: "Impersonate a client after authentication"
+	value: "SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Perform volume maintenance tasks"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Access this computer from the network"
+	value: "Administrators"&&"Users" 
+</item>
+
+<item> 
+	name: "Act as part of the operating system" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Allow log on locally"
+	value: "Administrators"&&"Backup Operators" 
+</item>
+
+<item> 
+	name: "Allow logon through Terminal Services" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Create global objects"
+	value: "SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Log on as a batch job" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Log on as a service"
+	value: "NETWORK SERVICE" 
+</item>
+
+<item> 
+	name: "Manage auditing and security log"
+	value: "Auditors" 
+</item>
+
+#--------------------------------------#
+#  [Registry Values] settings
+#--------------------------------------#
+
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\Machine"
+   value_type: POLICY_MULTI_TEXT
+   value_data: "System\CurrentControlSet\Control\ProductOptions"&&"System\CurrentControlSet\Control\Server Applications"&&"Software\Microsoft\Windows NT\CurrentVersion"
+   reg_key: "HKLM\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths"
+   reg_item: "Machine"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths\Machine"
+   value_type: POLICY_MULTI_TEXT
+   value_data: "Software\Microsoft\Windows NT\CurrentVersion\Print"&&"Software\Microsoft\Windows NT\CurrentVersion\Windows"&&"System\CurrentControlSet\Control\Print\Printers"&&"System\CurrentControlSet\Services\Eventlog"&&"Software\Microsoft\OLAP Server"&&"System\CurrentControlSet\Control\ContentIndex"&&"System\CurrentControlSet\Control\Terminal Server"&&"System\CurrentControlSet\Control\Terminal Server\UserConfig"&&"System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration"&&"Software\Microsoft\Windows NT\CurrentVersion\Perflib"&&"System\CurrentControlSet\Services\SysmonLog"
+   reg_key: "HKLM\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths"
+   reg_item: "Machine"
+</item>
+
+<item>
+	name: "System settings: Optional subsystems"
+	value: ""
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionPipes"
+   value_type: POLICY_MULTI_TEXT
+   value_data: "COMNAP"&&"COMNODE"&&"SQL\QUERY"&&"SPOOLSS"&&"LLSRPC"&&"Netlogon"&&"Lsarpc"&&"Samr"&&"Browser"
+   reg_key: "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters"
+   reg_item: "NullSessionPipes"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionShares"
+   value_type: POLICY_MULTI_TEXT
+   value_data: ""
+   reg_key: "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters"
+   reg_item: "NullSessionShares"
+</item>
+
+<item>
+	name: "Network access: Restrict anonymous access to Named Pipes and Shares"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\SafeDllSearchMode"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager"
+   reg_item: "SafeDllSearchMode"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\SYSTEM\CurrentControlSet\Services\Eventlog\Security\WarningLevel"
+   value_type: POLICY_DWORD
+   value_data: 90
+   reg_key: "HKLM\SYSTEM\CurrentControlSet\Services\Eventlog\Security"
+   reg_item: "WarningLevel"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\Netbt\Parameters\NoNameReleaseOnDemand"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\System\CurrentControlSet\Services\Netbt\Parameters"
+   reg_item: "NoNameReleaseOnDemand"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxConnectResponseRetransmissions"
+   value_type: POLICY_DWORD
+   value_data: [MIN..2]
+   reg_key: "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "TcpMaxConnectResponseRetransmissions"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmissions"
+   value_type: POLICY_DWORD
+   value_data: "[MIN..3]"
+   reg_key: "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "TcpMaxDataRetransmissions"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod"
+   value_type: POLICY_DWORD
+   value_data: "[MIN..5]"
+   reg_key: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon"
+   reg_item: "ScreenSaverGracePeriod"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<item>
+	name: "Audit: Shut down system immediately if unable to log security audits"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network access: Do not allow anonymous enumeration of SAM accounts and shares"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\Rasman\Parameters\DisableSavePassword"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\System\CurrentControlSet\Services\Rasman\Parameters"
+   reg_item: "DisableSavePassword"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters\EnableICMPRedirect"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "EnableICMPRedirect"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters\EnableDeadGWDetect"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "EnableDeadGWDetect"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime"
+   value_type: POLICY_DWORD
+   value_data: "[MIN..300000]"
+   reg_key: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "KeepAliveTime"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters\DisableIPSourceRouting"
+   value_type: POLICY_DWORD
+   value_data: 2
+   reg_key: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "DisableIPSourceRouting"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters\SynAttackProtect"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "SynAttackProtect"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters\PerformRouterDiscovery"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\system\CurrentControlSet\Services\Tcpip\Parameters"
+   reg_item: "PerformRouterDiscovery"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoDriveTypeAutoRun"
+   value_type: POLICY_DWORD
+   value_data: 255
+   reg_key: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"
+   reg_item: "NoDriveTypeAutoRun"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\NetworkHideSharePwds"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies"
+   reg_item: "NetworkHideSharePwds"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\NetworkNoDialIn"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies"
+   reg_item: "NetworkNoDialIn"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon"
+   value_type: POLICY_DWORD
+   value_data: "0"
+   reg_key: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon"
+   reg_item: "AutoAdminLogon"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<item>
+	name: "Domain member: Digitally sign secure channel data (when possible)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Domain member: Digitally encrypt secure channel data (when possible)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Domain member: Disable machine account password changes"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Microsoft network client: Digitally sign communications (if server agrees)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network client: Send unencrypted password to third-party SMB servers"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Microsoft network server: Digitally sign communications (if client agrees)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network server: Amount of idle time required before suspending session"
+	value: "[MIN..15]"
+</item>
+
+<item>
+	name: "System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\print\providers\lanman print services\servers\addprinterdrivers"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\currentcontrolset\control\print\providers\lanman print services\servers"
+   reg_item: "addprinterdrivers"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\lsa\lmcompatibilitylevel"
+   value_type: POLICY_DWORD
+   value_data: 4
+   reg_key: "HKLM\system\currentcontrolset\control\lsa"
+   reg_item: "lmcompatibilitylevel"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "Shutdown: Allow system to be shut down without having to log on"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Interactive logon: Do not require CTRL+ALT+DEL"
+	value: "disabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\windows nt\currentversion\winlogon\scremoveoption"
+   value_type: POLICY_DWORD
+   value_data: "1"
+   reg_key: "HKLM\software\microsoft\windows nt\currentversion\winlogon"
+   reg_item: "scremoveoption"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<item>
+	name: "Interactive logon: Prompt user to change password before expiration"
+	value: "[14..MAX]"
+</item>
+
+<item>
+	name: "Interactive logon: Number of previous logons to cache (in case domain controller is not available)"
+	value: "[MIN..2]"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\windows nt\currentversion\winlogon\allocatedasd"
+   value_type: POLICY_DWORD
+   value_data: "0"
+   reg_key: "HKLM\software\microsoft\windows nt\currentversion\winlogon"
+   reg_item: "allocatedasd"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<item>
+	name: "Recovery console: Allow floppy copy and access to all drives and all folders"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Recovery console: Allow automatic administrative logon"
+	value: "disabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\non-driver signing\policy"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\software\microsoft\non-driver signing"
+   reg_item: "policy"
+   reg_type: REG_BINARY
+</item>
+
+<item>
+	name: "Interactive logon: Do not display last user name"
+	value: "enabled"
+</item>
+
+<custom_item>
+  type: REGISTRY_SETTING
+  description: "Interactive logon: Message text for users attempting to log on"
+
+  value_type: POLICY_TEXT
+  reg_key: "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system"
+  reg_item: "LegalNoticeText"
+  value_data: "You are accessing a U\.S\. Government \(USG\) Information System \(IS\) that is provided for USG-authorized use only\."
+  check_type : CHECK_REGEX
+</item>
+
+<item>
+	name: "Interactive logon: Message title for users attempting to log on"
+	value: "US DEPARTMENT OF DEFENSE WARNING STATEMENT"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Driver Signing\Policy"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\Software\Microsoft\Driver Signing"
+   reg_item: "Policy"
+   reg_type: REG_BINARY
+</item>
+
+<item>
+	name: "Domain member: Maximum machine account password age"
+	value: "30"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\LDAP\LDAPClientIntegrity"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\System\CurrentControlSet\Services\LDAP"
+   reg_item: "LDAPClientIntegrity"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "System objects: Require case insensitivity for non-Windows subsystems"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network access: Do not allow anonymous enumeration of SAM accounts"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network security: Do not store LAN Manager hash value on next password change"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\NoDefaultAdminOwner"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa"
+   reg_item: "NoDefaultAdminOwner"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinServerSec"
+   value_type: POLICY_DWORD
+   value_data: 537395248
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa\MSV1_0"
+   reg_item: "NTLMMinServerSec"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinClientSec"
+   value_type: POLICY_DWORD
+   value_data: 537395248
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa\MSV1_0"
+   reg_item: "NTLMMinClientSec"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa"
+   reg_item: "LimitBlankPasswordUse"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\ForceGuest"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa"
+   reg_item: "ForceGuest"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network access: Let Everyone permissions apply to anonymous users"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Network access: Do not allow storage of credentials or .NET Passports for network authentication"
+	value: "enabled"
+</item>
+
+<item>
+	name: "System settings: Use Certificate Rules on Windows Executables for Software Restriction Policies"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Policies\Microsoft\Cryptography\ForceKeyProtection"
+   value_type: POLICY_DWORD
+   value_data: 2
+   reg_key: "HKLM\Software\Policies\Microsoft\Cryptography"
+   reg_item: "ForceKeyProtection"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "Devices: Allow undock without having to log on"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Interactive logon: Require Domain Controller authentication to unlock workstation"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Domain member: Require strong (Windows 2000 or later) session key"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Domain member: Digitally encrypt or sign secure channel data (always)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network client: Digitally sign communications (always)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network server: Digitally sign communications (always)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network server: Disconnect clients when logon hours expire"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod"
+   value_type: POLICY_DWORD
+   value_data: "[MIN..5]"
+   reg_key: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon"
+   reg_item: "ScreenSaverGracePeriod"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+#--------------------------------------#
+#  [Profile Description] settings
+#--------------------------------------#
+
+#Description=FSO Platinum Security for Windows Server 2003 Member Servers 
+
+
+</group_policy>
+</check_type>
+
+

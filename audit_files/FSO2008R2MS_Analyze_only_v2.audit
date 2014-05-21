@@ -1,0 +1,1005 @@
+#
+# (C) 2014 Tenable Network Security, Inc.
+#
+# This script is released under the Tenable Subscription License and
+# may not be used from within scripts released under another license
+# without authorization from Tenable Network Security, Inc.
+#
+# See the following licenses for details:
+#
+# http://static.tenable.com/prod_docs/Nessus_5_SLA_and_Subscription_Agreement.pdf
+# http://static.tenable.com/prod_docs/Subscription_Agreement.pdf
+#
+# @PROFESSIONALFEED@
+# $Revision: 1.4 $
+# $Date: 2014/01/16 18:28:23 $
+# Description :
+# 
+# This file was created from .inf file U_FSO_2008_R2_MS_Analyze_only_V1R9.inf, included with 
+# DISA STIGs Windows Server 2008 R2 Member Server Security checklists Version 1, Release 9. The inf 
+# files and other related documentation can be downloaded from the following 
+# links :
+#  
+# http://iase.disa.mil/stigs/checklist/
+# http://iase.disa.mil/stigs/os/windows/u_windows_2008_r2_v1r9_stig.zip
+#
+
+<check_type: "Windows" version:"2">
+
+<group_policy: "Tenable Audit file created with i2a v2 tool">
+
+
+#--------------------------------------#
+#  [Unicode] settings
+#--------------------------------------#
+
+#Unicode=yes
+
+#--------------------------------------#
+#  [Version] settings
+#--------------------------------------#
+
+#signature="$CHICAGO$"
+#Revision=1
+
+#--------------------------------------#
+#  [System Access] settings
+#--------------------------------------#
+
+
+<item>
+	name: "Minimum password age"
+	value: "1"
+</item>
+
+<item>
+	name: "Maximum password age"
+	value: "[MIN..60]"
+</item>
+
+<item>
+	name: "Minimum password length"
+	value: "[14..MAX]"
+</item>
+
+<item>
+	name: "Password must meet complexity requirements"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Enforce password history"
+	value: "[24..MAX]"
+</item>
+
+<item>
+	name: "Account lockout threshold"
+	value: "[MIN..3]"
+</item>
+
+<item>
+	name: "Reset lockout account counter after"
+	value: "[60..MAX]"
+</item>
+
+<item>
+	name: "Account lockout duration"
+	value: "0"
+</item>
+
+<item>
+	name: "Network security: Force logoff when logon hours expire"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Store password using reversible encryption for all users in the domain"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Network access: Allow anonymous SID/Name translation"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Accounts: Guest account status"
+	value: "disabled"
+</item>
+
+#--------------------------------------#
+#  [Privilege Rights] settings
+#--------------------------------------#
+
+
+<item> 
+	name: "Replace a process level token"
+	value: "NETWORK SERVICE"&&"LOCAL SERVICE" 
+</item>
+
+<item> 
+	name: "Generate security audits"
+	value: "NETWORK SERVICE"&&"LOCAL SERVICE" 
+</item>
+
+<item> 
+	name: "Back up files and directories"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Log on as a batch job"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Bypass traverse checking"
+	value: "NETWORK SERVICE"&&"LOCAL SERVICE"&&"Authenticated Users"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Create global objects"
+	value: "SERVICE"&&"NETWORK SERVICE"&&"LOCAL SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Create a pagefile"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Create permanent shared objects" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Create symbolic links"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Create a token object" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Debug programs"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Deny log on as a batch job"
+	value: "Guests" 
+</item>
+
+<item> 
+	name: "Deny log on locally"
+	value: "Guests" 
+</item>
+
+<item> 
+	name: "Deny access to this computer from the network"
+	value: "Guests" 
+</item>
+
+<item> 
+	name: "Deny log on through Terminal Services"
+	value: "Guests" 
+</item>
+
+<item> 
+	name: "Deny log on as a service" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Enable computer and user accounts to be trusted for delegation"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Impersonate a client after authentication"
+	value: "SERVICE"&&"NETWORK SERVICE"&&"LOCAL SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Increase scheduling priority"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Adjust memory quotas for a process"
+	value: "Administrators"&&"NETWORK SERVICE"&&"LOCAL SERVICE" 
+</item>
+
+<item> 
+	name: "Increase a process working set"
+	value: "LOCAL SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Allow log on locally"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Load and unload device drivers"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Lock Pages in Memory" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Perform volume maintenance tasks"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Access this computer from the network"
+	value: "Authenticated Users"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Profile single process"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Modify an object label" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Allow logon through Terminal Services"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Force shutdown from a remote system"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Restore files and directories"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Manage auditing and security log"
+	value: "Auditors" 
+</item>
+
+<item> 
+	name: "Shut down the system"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Modify firmware environment values"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Profile system performance"
+	value: "Administrators"&&"WdiServiceHost" 
+</item>
+
+<item> 
+	name: "Change the system time"
+	value: "Administrators"&&"LOCAL SERVICE" 
+</item>
+
+<item> 
+	name: "Take ownership of files or other objects"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Act as part of the operating system" 
+	value: "" 
+</item>
+
+<item> 
+	name: "Change the time zone"
+	value: "LOCAL SERVICE"&&"Administrators" 
+</item>
+
+<item> 
+	name: "Remove computer from docking station"
+	value: "Administrators" 
+</item>
+
+<item> 
+	name: "Modify an object label" 
+	value: "" 
+</item>
+
+#--------------------------------------#
+#  [Registry Values] settings
+#--------------------------------------#
+
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableUIADesktopToggle"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System"
+   reg_item: "EnableUIADesktopToggle"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "Devices: Allow undock without having to log on"
+	value: "disabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Policies\Microsoft\Cryptography\ForceKeyProtection"
+   value_type: POLICY_DWORD
+   value_data: 2
+   reg_key: "HKLM\Software\Policies\Microsoft\Cryptography"
+   reg_item: "ForceKeyProtection"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "System settings: Use Certificate Rules on Windows Executables for Software Restriction Policies"
+	value: "enabled"
+</item>
+
+<item>
+	name: "System settings: Optional subsystems"
+	value: ""
+</item>
+
+<item>
+	name: "Recovery console: Allow automatic administrative logon"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Recovery console: Allow floppy copy and access to all drives and all folders"
+	value: "disabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\windows nt\currentversion\winlogon\allocatedasd"
+   value_type: POLICY_DWORD
+   value_data: "0"
+   reg_key: "HKLM\software\microsoft\windows nt\currentversion\winlogon"
+   reg_item: "allocatedasd"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\windows nt\currentversion\winlogon\autoadminlogon"
+   value_type: POLICY_DWORD
+   value_data: "0"
+   reg_key: "HKLM\software\microsoft\windows nt\currentversion\winlogon"
+   reg_item: "autoadminlogon"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<item>
+	name: "Interactive logon: Number of previous logons to cache (in case domain controller is not available)"
+	value: "[MIN..2]"
+</item>
+
+<item>
+	name: "Interactive logon: Prompt user to change password before expiration"
+	value: "[14..MAX]"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\windows nt\currentversion\winlogon\screensavergraceperiod"
+   value_type: POLICY_DWORD
+   value_data: "[MIN..5]"
+   reg_key: "HKLM\software\microsoft\windows nt\currentversion\winlogon"
+   reg_item: "screensavergraceperiod"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\windows nt\currentversion\winlogon\scremoveoption"
+   value_type: POLICY_DWORD
+   value_data: "1"
+   reg_key: "HKLM\software\microsoft\windows nt\currentversion\winlogon"
+   reg_item: "scremoveoption"
+   reg_type: REG_SZ_DECIMAL
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\software\microsoft\windows\currentversion\policies\explorer\nodrivetypeautorun"
+   value_type: POLICY_DWORD
+   value_data: 255
+   reg_key: "HKLM\software\microsoft\windows\currentversion\policies\explorer"
+   reg_item: "nodrivetypeautorun"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode"
+	value: "4"
+</item>
+
+<item>
+	name: "User Account Control: Behavior of the elevation prompt for standard users"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Interactive logon: Do not require CTRL+ALT+DEL"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Interactive logon: Do not display last user name"
+	value: "enabled"
+</item>
+
+<item>
+	name: "User Account Control: Detect application installations and prompt for elevation"
+	value: "enabled"
+</item>
+
+<item>
+	name: "User Account Control: Run all administrators in Admin Approval Mode"
+	value: "enabled"
+</item>
+
+<item>
+	name: "User Account Control: Only elevate UIAccess applications that are installed in secure locations"
+	value: "enabled"
+</item>
+
+<item>
+	name: "User Account Control: Virtualize file and registry write failures to per-user locations"
+	value: "enabled"
+</item>
+
+<item>
+	name: "User Account Control: Admin Approval Mode for the Built-in Administrator account"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Interactive logon: Message title for users attempting to log on"
+	value: "DoD Notice and Consent Banner"
+</item>
+
+<custom_item>
+  type: REGISTRY_SETTING
+  description: "Interactive logon: Message text for users attempting to log on"
+
+  value_type: POLICY_TEXT
+  reg_key: "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system"
+  reg_item: "LegalNoticeText"
+  value_data: "You are accessing a U\.S\. Government \(USG\) Information System \(IS\) that is provided for USG-authorized use only\."
+  check_type : CHECK_REGEX
+
+</item>
+
+<item>
+	name: "User Account Control: Switch to the secure desktop when prompting for elevation"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Audit: Audit the access of global system objects"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Network access: Do not allow storage of credentials or .NET Passports for network authentication"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network access: Let Everyone permissions apply to anonymous users"
+	value: "disabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\lsa\fipsalgorithmpolicy\enabled"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\currentcontrolset\control\lsa\fipsalgorithmpolicy"
+   reg_item: "enabled"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\lsa\forceguest"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\system\currentcontrolset\control\lsa"
+   reg_item: "forceguest"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "Audit: Audit the use of Backup and Restore privilege"
+	value: "disabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\lsa\limitblankpassworduse"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\currentcontrolset\control\lsa"
+   reg_item: "limitblankpassworduse"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\lsa\lmcompatibilitylevel"
+   value_type: POLICY_DWORD
+   value_data: 5
+   reg_key: "HKLM\system\currentcontrolset\control\lsa"
+   reg_item: "lmcompatibilitylevel"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\lsa\msv1_0\ntlmminclientsec"
+   value_type: POLICY_DWORD
+   value_data: 537395200
+   reg_key: "HKLM\system\currentcontrolset\control\lsa\msv1_0"
+   reg_item: "ntlmminclientsec"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\lsa\msv1_0\ntlmminserversec"
+   value_type: POLICY_DWORD
+   value_data: 537395200
+   reg_key: "HKLM\system\currentcontrolset\control\lsa\msv1_0"
+   reg_item: "ntlmminserversec"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "Network security: Do not store LAN Manager hash value on next password change"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network access: Do not allow anonymous enumeration of SAM accounts and shares"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network access: Do not allow anonymous enumeration of SAM accounts"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\print\providers\lanman print services\servers\addprinterdrivers"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\currentcontrolset\control\print\providers\lanman print services\servers"
+   reg_item: "addprinterdrivers"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\securepipeservers\winreg\allowedexactpaths\machine"
+   value_type: POLICY_MULTI_TEXT
+   value_data: "System\CurrentControlSet\Control\ProductOptions"&&"System\CurrentControlSet\Control\Server Applications"&&"Software\Microsoft\Windows NT\CurrentVersion"
+   reg_key: "HKLM\system\currentcontrolset\control\securepipeservers\winreg\allowedexactpaths"
+   reg_item: "machine"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\securepipeservers\winreg\allowedpaths\machine"
+   value_type: POLICY_MULTI_TEXT
+   value_data: "System\CurrentControlSet\Control\Print\Printers"&&"System\CurrentControlSet\Services\Eventlog"&&"Software\Microsoft\OLAP Server"&&"Software\Microsoft\Windows NT\CurrentVersion\Print"&&"Software\Microsoft\Windows NT\CurrentVersion\Windows"&&"System\CurrentControlSet\Control\ContentIndex"&&"System\CurrentControlSet\Control\Terminal Server"&&"System\CurrentControlSet\Control\Terminal Server\UserConfig"&&"System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration"&&"Software\Microsoft\Windows NT\CurrentVersion\Perflib"&&"System\CurrentControlSet\Services\SysmonLog"
+   reg_key: "HKLM\system\currentcontrolset\control\securepipeservers\winreg\allowedpaths"
+   reg_item: "machine"
+</item>
+
+<item>
+	name: "System objects: Require case insensitivity for non-Windows subsystems"
+	value: "enabled"
+</item>
+
+<item>
+	name: "System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\control\session manager\safedllsearchmode"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\currentcontrolset\control\session manager"
+   reg_item: "safedllsearchmode"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\eventlog\security\warninglevel"
+   value_type: POLICY_DWORD
+   value_data: "[MIN..90]"
+   reg_key: "HKLM\system\currentcontrolset\services\eventlog\security"
+   reg_item: "warninglevel"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\ipsec\nodefaultexempt"
+   value_type: POLICY_DWORD
+   value_data: 3
+   reg_key: "HKLM\system\currentcontrolset\services\ipsec"
+   reg_item: "nodefaultexempt"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "Microsoft network server: Amount of idle time required before suspending session"
+	value: "[MIN..15]"
+</item>
+
+<item>
+	name: "Microsoft network server: Disconnect clients when logon hours expire"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network server: Digitally sign communications (if client agrees)"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\lanmanserver\parameters\nullsessionpipes"
+   value_type: POLICY_MULTI_TEXT
+   value_data: ""
+   reg_key: "HKLM\system\currentcontrolset\services\lanmanserver\parameters"
+   reg_item: "nullsessionpipes"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\lanmanserver\parameters\nullsessionshares"
+   value_type: POLICY_MULTI_TEXT
+   value_data: ""
+   reg_key: "HKLM\system\currentcontrolset\services\lanmanserver\parameters"
+   reg_item: "nullsessionshares"
+</item>
+
+<item>
+	name: "Microsoft network server: Digitally sign communications (always)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Network access: Restrict anonymous access to Named Pipes and Shares"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network client: Send unencrypted password to third-party SMB servers"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Microsoft network client: Digitally sign communications (if server agrees)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Microsoft network client: Digitally sign communications (always)"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\ldap\ldapclientintegrity"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\currentcontrolset\services\ldap"
+   reg_item: "ldapclientintegrity"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\netbt\parameters\nonamereleaseondemand"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\system\currentcontrolset\services\netbt\parameters"
+   reg_item: "nonamereleaseondemand"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "Domain member: Disable machine account password changes"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Domain member: Maximum machine account password age"
+	value: "[MIN..30]"
+</item>
+
+<item>
+	name: "Domain member: Digitally encrypt or sign secure channel data (always)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Domain member: Require strong (Windows 2000 or later) session key"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Domain member: Digitally encrypt secure channel data (when possible)"
+	value: "enabled"
+</item>
+
+<item>
+	name: "Domain member: Digitally sign secure channel data (when possible)"
+	value: "enabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\tcpip\parameters\disableipsourcerouting"
+   value_type: POLICY_DWORD
+   value_data: 2
+   reg_key: "HKLM\system\currentcontrolset\services\tcpip\parameters"
+   reg_item: "disableipsourcerouting"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\tcpip\parameters\enableicmpredirect"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\system\currentcontrolset\services\tcpip\parameters"
+   reg_item: "enableicmpredirect"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\tcpip\parameters\keepalivetime"
+   value_type: POLICY_DWORD
+   value_data: [MIN..300000]
+   reg_key: "HKLM\system\currentcontrolset\services\tcpip\parameters"
+   reg_item: "keepalivetime"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\tcpip\parameters\performrouterdiscovery"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\system\currentcontrolset\services\tcpip\parameters"
+   reg_item: "performrouterdiscovery"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\system\currentcontrolset\services\tcpip\parameters\tcpmaxdataretransmissions"
+   value_type: POLICY_DWORD
+   value_data: 3
+   reg_key: "HKLM\system\currentcontrolset\services\tcpip\parameters"
+   reg_item: "tcpmaxdataretransmissions"
+   reg_type: REG_DWORD
+</item>
+
+<item>
+	name: "User Account Control: Only elevate executables that are signed and validated"
+	value: "disabled"
+</item>
+
+<item>
+	name: "Shutdown: Allow system to be shut down without having to log on"
+	value: "disabled"
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\Tcpip6\Parameters\TcpMaxDataRetransmissions"
+   value_type: POLICY_DWORD
+   value_data: 3
+   reg_key: "HKLM\System\CurrentControlSet\Services\Tcpip6\Parameters"
+   reg_item: "TcpMaxDataRetransmissions"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\Tcpip6\Parameters\DisableIPSourceRouting"
+   value_type: POLICY_DWORD
+   value_data: 2
+   reg_key: "HKLM\System\CurrentControlSet\Services\Tcpip6\Parameters"
+   reg_item: "DisableIPSourceRouting"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters\SmbServerNameHardeningLevel"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters"
+   reg_item: "SmbServerNameHardeningLevel"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\UseMachineId"
+   value_type: POLICY_DWORD
+   value_data: 1
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa"
+   reg_item: "UseMachineId"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\pku2u\AllowOnlineID"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa\pku2u"
+   reg_item: "AllowOnlineID"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\System\CurrentControlSet\Control\Lsa\MSV1_0\allownullsessionfallback"
+   value_type: POLICY_DWORD
+   value_data: 0
+   reg_key: "HKLM\System\CurrentControlSet\Control\Lsa\MSV1_0"
+   reg_item: "allownullsessionfallback"
+   reg_type: REG_DWORD
+</item>
+
+<custom_item> 
+   type: REGISTRY_SETTING
+   description: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\SupportedEncryptionTypes"
+   value_type: POLICY_DWORD
+   value_data: 2147483644
+   reg_key: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters"
+   reg_item: "SupportedEncryptionTypes"
+   reg_type: REG_DWORD
+</item>
+
+#--------------------------------------#
+#  [Registry Keys] settings
+#--------------------------------------#
+
+
+<registry_acl: "1">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "LOCAL SERVICE">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "read" 
+	</user>
+
+<user: "Backup Operators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This key only"
+ 	acl_allow: "read" 
+	</user>
+
+</acl>
+
+<custom_item>
+	type: REGISTRY_PERMISSIONS
+	description: "HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedPaths REGISTRY_PERMISSIONS audit"
+	value_type: REG_ACL
+	value_data: "1"
+	reg_key: "HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedPaths"
+       acl_option: CAN_BE_NULL
+</item>
+
+<registry_acl: "2">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "LOCAL SERVICE">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "read" 
+	</user>
+
+<user: "Backup Operators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This key only"
+ 	acl_allow: "read" 
+	</user>
+
+</acl>
+
+<custom_item>
+	type: REGISTRY_PERMISSIONS
+	description: "HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedExactPaths REGISTRY_PERMISSIONS audit"
+	value_type: REG_ACL
+	value_data: "2"
+	reg_key: "HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedExactPaths"
+       acl_option: CAN_BE_NULL
+</item>
+
+<registry_acl: "3">
+
+<user: "Administrators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "full control" 
+	</user>
+
+<user: "Backup Operators">
+	acl_inheritance: "not inherited"
+	acl_apply: "This key only"
+ 	acl_allow: "read" 
+	</user>
+
+<user: "LOCAL SERVICE">
+	acl_inheritance: "not inherited"
+	acl_apply: "This Key and Subkeys"
+ 	acl_allow: "read" 
+	</user>
+
+</acl>
+
+<custom_item>
+	type: REGISTRY_PERMISSIONS
+	description: "HKLM\system\currentcontrolset\control\securepipeservers\winreg REGISTRY_PERMISSIONS audit"
+	value_type: REG_ACL
+	value_data: "3"
+	reg_key: "HKLM\system\currentcontrolset\control\securepipeservers\winreg"
+       acl_option: CAN_BE_NULL
+</item>
+
+
+</group_policy>
+</check_type>
+
+
